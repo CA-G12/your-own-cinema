@@ -44,8 +44,8 @@ The Meals page displays a variety of meals options from which the user can pick 
 - If you're a Git user:
 
   - In Your terminal write
-    `git clone https://github.com/CA-G12/Quiz-App-Team-14.git`
-  - Then `cd Quiz-App-Team-14`
+    `git clone https://github.com/CA-G12/your-own-cinema.git`
+  - Then `cd your-own-cinema`
 
 - If you're not a git user:
 
@@ -66,7 +66,6 @@ The Meals page displays a variety of meals options from which the user can pick 
 - HTML5
 - CSS
 - Javascript
-- LocalStorage
 - Git & Github
 - Third party APIs
 - Figma
