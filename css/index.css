@@ -1,0 +1,13 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+:root {
+  --bright-green: #00ff47;
+  --dark-green: #005718;
+  --bright-orange: #ff4c00;
+  --dark-orange: #e34704;
+}

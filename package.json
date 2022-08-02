@@ -1,0 +1,27 @@
+{
+  "name": "your-own-cinema",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test.movies": "jest ./tests/movies.test.js",
+    "test.meals": "jest ./tests/meals.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CA-G12/your-own-cinema.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CA-G12/your-own-cinema/issues"
+  },
+  "homepage": "https://github.com/CA-G12/your-own-cinema#readme",
+  "devDependencies": {
+    "jest": "^28.1.3"
+  }
+}
