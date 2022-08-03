@@ -10,6 +10,6 @@ const getDetails = (obj) => {
   return details;
 };
 
-if (typeof module !== undefined) {
+if (typeof module !== 'undefined') {
   module.exports = { getDetails };
 }

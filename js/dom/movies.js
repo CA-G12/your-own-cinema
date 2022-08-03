@@ -1,25 +1,59 @@
-// Display a random movie
-const randomMov = document.querySelector('#one-movie');
+// ================ get all seasons for one show =================
+const moviesContainer = document.querySelector('#movies-section');
+const seasonsContainer = document.querySelector('#seasons-section');
 
-console.log(randomMov.children[1].children[0]);
-const randomMovie = (obj) => {
-  const details = getDetails(obj);
-  console.log(details);
-  document.querySelector('#one-movie .details h2').innerHTML = `${
-    obj.name
-  } <span>${details.genres.join(', ')}</span>`;
+const getSeasons = (id) => {
+  moviesContainer.style.display = 'none';
+  seasonsContainer.style.display = 'flex';
+  seasonsContainer.textContent = '';
 
-  document.querySelector(
-    '#one-movie'
-  ).style.backgroundImage = `url(${details.image})`;
+  fetch(`https://api.tvmaze.com/shows/${id}/seasons`, (data) => {
+    data.forEach((e) => {
+      const season = document.createElement('div');
+      season.classList = 'season';
 
-  console.log(obj.image);
+      if (e.image) season.style.backgroundImage = `url(${e.image.original})`;
+      else season.style.backgroundImage = `url(../images/broken2.jpg)`;
+
+      const title = document.querySelector('h3');
+      title.textContent = `season ${e.number}`;
+
+      const btn = document.querySelector('button');
+      btn.textContent = 'episodes';
+
+      season.appendChild(title);
+      season.appendChild(btn);
+
+      seasonsContainer.appendChild(season);
+    });
+  });
 };
 
-//  render data and display them in the page
-const moviesContainer = document.querySelector('#movies-section');
+// ================ get a random movie in each refresh ======================
+// html elements for changing the values
+const randomMov = document.querySelector('#one-movie');
+const heading = document.querySelector('#one-movie .details h2');
+const imgContainer = document.querySelector('#one-movie');
 
+const randomMovie = (obj) => {
+  const details = getDetails(obj);
+  randomMov.classList = obj.id;
+  heading.innerHTML = `${obj.name} <span>${details.genres.join(', ')}</span>`;
+  imgContainer.style.backgroundImage = `url(${details.image})`;
+
+  const btn = document.querySelector('.show-more');
+
+  const id = randomMov.classList[0];
+  console.log(btn, id);
+
+  btn.addEventListener('click', (e) => {
+    getSeasons(obj.id);
+  });
+};
+
+// ==================== render data and display them in the page ==================
 const renderData = (arr) => {
+  moviesContainer.style.display = 'block';
   moviesContainer.textContent = '';
   arr.forEach((e) => {
     const movie = document.createElement('div');
@@ -49,6 +83,9 @@ const renderData = (arr) => {
 
     const btn = document.createElement('button');
     btn.textContent = 'See More';
+    btn.addEventListener('click', () => {
+      randomMovie(e);
+    });
 
     movie.appendChild(btn);
 
@@ -56,8 +93,48 @@ const renderData = (arr) => {
   });
 };
 
+// ===============  create the search functionality ===============
+
+let input = document.querySelector('.search input');
+input.addEventListener('keyup', (e) => {
+  fetch(
+    `https://api.tvmaze.com/singlesearch/shows?q=${e.target.value}`,
+    (data) => {
+      if (data) renderData([data]);
+    }
+  );
+});
+
+// =============  fetching all data ==========
+
 fetch('https://api.tvmaze.com/shows', (data) => {
   renderData(data.slice(0, 50));
   const random = data[Math.floor(Math.random() * data.length)];
   randomMovie(random);
 });
+
+// const getSeasons = (arr) => {
+//   moviesContainer.style.display = 'none';
+//   seasonsContainer.style.display = 'flex';
+
+//   //   console.log(arr);
+//   seasonsContainer.textContent = '';
+//   arr.forEach((e) => {
+//     const season = document.createElement('div');
+//     season.classList = 'season';
+
+//     if (e.image) season.style.backgroundImage = `url(${e.image.original})`;
+//     else season.style.backgroundImage = `url(../images/broken2.jpg)`;
+
+//     const title = document.querySelector('h3');
+//     title.textContent = `season ${e.number}`;
+
+//     const btn = document.querySelector('button');
+//     btn.textContent = 'episodes';
+
+//     season.appendChild(title);
+//     season.appendChild(btn);
+
+//     seasonsContainer.appendChild(season);
+//   });
+// };
