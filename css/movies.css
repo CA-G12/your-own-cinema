@@ -151,6 +151,49 @@ body {
   cursor: pointer;
 }
 
+@media (min-width: 1024px) {
+  main {
+    display: flex;
+  }
+  #one-movie {
+    width: 50%;
+    height: 100vh;
+  }
+
+  #one-movie .search input {
+    padding: 1rem 5rem;
+    border-radius: 30px;
+  }
+
+  #one-movie .search input::placeholder {
+    font-size: 1rem;
+  }
+
+  #one-movie .details {
+    margin: 10rem 2rem 2rem 4rem;
+  }
+
+  #one-movie .details h2 {
+    font-size: 3rem;
+  }
+
+  #one-movie .details span {
+    font-size: 2rem;
+  }
+
+  #one-movie .details button {
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  #movies-section {
+    width: 50%;
+    height: 90vh;
+    overflow-y: scroll;
+  }
+}
+
 @media (min-width: 1440px) {
   main {
     display: flex;

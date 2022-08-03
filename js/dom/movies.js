@@ -37,7 +37,7 @@ const renderData = (arr) => {
     const name = document.createElement('div');
     name.classList = 'name';
 
-    const title = document.createElement('h2');
+    const title = document.createElement('h3');
     title.textContent = e.name;
     name.appendChild(title);
 
