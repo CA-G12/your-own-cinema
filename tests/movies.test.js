@@ -61,11 +61,12 @@ test('testing the getElement function', () => {
   const details = logic.getDetails(obj);
 
   expect(logic.getDetails(obj)).toEqual({
+    id: obj.id,
     name: obj.name,
     genres: obj.genres,
     image: obj.image.original,
     url: obj.url,
   });
 
-  expect(Object.keys(details).length).toBe(4);
+  expect(Object.keys(details).length).toBe(5);
 });
