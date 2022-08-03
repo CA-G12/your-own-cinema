@@ -167,11 +167,11 @@ body{
     margin: 10rem 2rem 2rem 4rem;
   }
 
-  #one-meal .details h2 {
+  .one-meal-h2 {
     font-size: 5rem;
   }
 
-  #one-meal .details span {
+  .one-meal-span {
     font-size: 2rem;
   }
 
