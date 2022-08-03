@@ -64,7 +64,7 @@ body{
 }
 
 
-#one-meal .search i{
+.search-i{
   color: var(--dark-orange);
   position: absolute;
   z-index: 2;
