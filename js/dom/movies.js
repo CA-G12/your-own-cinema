@@ -54,6 +54,8 @@ const randomMovie = (obj) => {
 // ==================== render data and display them in the page ==================
 const renderData = (arr) => {
   moviesContainer.style.display = 'block';
+  seasonsContainer.style.display = 'none';
+
   moviesContainer.textContent = '';
   arr.forEach((e) => {
     const movie = document.createElement('div');
