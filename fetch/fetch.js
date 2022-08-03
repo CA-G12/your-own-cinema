@@ -6,7 +6,7 @@ const fetch = (url, cb) => {
         let data = JSON.parse(xhr.responseText);
         cb(data);
       } else {
-        alert('something went wrong');
+        console.log('something went wrong');
       }
     }
   };
