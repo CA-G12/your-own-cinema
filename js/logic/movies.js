@@ -1,5 +1,6 @@
 const getDetails = (obj) => {
   let details = {
+    id: obj.id,
     name: obj.name,
     genres: obj.genres,
     image: obj.image.original,
