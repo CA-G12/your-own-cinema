@@ -151,6 +151,66 @@ body {
   cursor: pointer;
 }
 
+#seasons-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 0.5rem;
+  padding: 2rem 1rem;
+  display: none;
+}
+
+#seasons-section .season {
+  background-image: url('../images/joker.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 10rem;
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding: 1rem;
+  color: white;
+  z-index: 2;
+}
+
+#seasons-section .season::after {
+  content: '';
+  position: absolute;
+  background-color: rgb(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+#seasons-section .season h3,
+button {
+  position: relative;
+  z-index: 1;
+}
+
+#seasons-section .season button {
+  background-color: var(--dark-green);
+  padding: 0.5rem 1rem;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+#seasons-section .season button:hover {
+  background-color: inherit;
+  color: var(--bright-green);
+  outline: 2px solid var(--bright-green);
+  box-shadow: 0 0 10px 0 var(--bright-green), 0 0 20px 0 var(--bright-green),
+    0 0 30px 0 var(--bright-green);
+}
+
 @media (min-width: 1024px) {
   main {
     display: flex;
@@ -189,8 +249,19 @@ body {
 
   #movies-section {
     width: 50%;
-    height: 90vh;
+    height: 95vh;
     overflow-y: scroll;
+  }
+
+  #seasons-section {
+    width: 50%;
+    height: 95vh;
+    overflow-y: scroll;
+  }
+
+  #seasons-section .season {
+    width: 33%;
+    height: 17rem;
   }
 }
 
