@@ -59,8 +59,8 @@ function mainMeal(mealName,mealCategory,mealImg,mealYoutube){
 
     oneMealSection.style.backgroundImage = `url(${mealImg})`;
     const oneMealDetails = createElement('div','details',oneMealSection,'');
-    const oneMealh2 = createElement('h2','',oneMealDetails,mealName);
-    const oneMealspan = createElement('span','',oneMealh2,mealCategory);
+    const oneMealh2 = createElement('h2','.one-meal-h2',oneMealDetails,mealName);
+    const oneMealspan = createElement('span','.one-meal-span',oneMealh2,mealCategory);
     const oneMealbtn = createElement('button','',oneMealDetails,'See more')
 }
 
@@ -68,7 +68,7 @@ function mainMeal(mealName,mealCategory,mealImg,mealYoutube){
 
 function createSearch(divParent){
     const searchDiv = createElement('div','search',divParent,'');
-    const input = createElement('input','',searchDiv,'');
+    const input = createElement('input','.one-meal-input',searchDiv,'');
     const i = createElement('i','fa-solid fa-magnifying-glass',searchDiv,'');
 
     input.addEventListener('keyup', () =>{
