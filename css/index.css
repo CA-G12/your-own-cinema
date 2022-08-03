@@ -2,7 +2,8 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
+  transition: 0.4s;
 }
 
 :root {
@@ -10,4 +11,94 @@
   --dark-green: #005718;
   --bright-orange: #ff4c00;
   --dark-orange: #e34704;
+  
+}
+
+main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+
+section {
+  width: 50%;
+  display: flex;
+}
+
+.movie,
+.meal {
+  position: relative;
+}
+
+.movie-img,
+.meal-img {
+  float: left;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(30%);
+}
+
+.movie-btn,.meal-btn {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 30%;
+  width: 30%;
+  height: 6%;
+  font-weight: 350;
+  font-size: 1.3em;
+  text-align: center;
+  background-color: transparent;
+  cursor:pointer;
+ 
+}
+
+.movie-btn{
+  border: 1px solid  var(--dark-green);
+  color: var(--bright-green);
+}
+
+.meal-btn{
+  border: 1px solid var(--bright-orange);
+  color: var(--bright-orange);
+} 
+
+.movie-btn:hover{
+  background-color: var(--bright-green);
+  color: white;
+}
+
+.meal-btn:hover{
+  background-color: var(--bright-orange);
+  color: white;
+
+}
+
+
+@media only screen and (max-width: 1000px) {
+  
+main {
+  display: flex;
+  flex-direction: column;
+}  
+
+
+.movie-btn,.meal-btn {
+  width: 50%;
+  height: 7%;
+  font-size: 1em;
+}
+
+section {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
 }
