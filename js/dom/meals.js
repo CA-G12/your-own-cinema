@@ -69,7 +69,7 @@ function mainMeal(mealName,mealCategory,mealImg,mealYoutube){
 function createSearch(divParent){
     const searchDiv = createElement('div','search',divParent,'');
     const input = createElement('input','.one-meal-input',searchDiv,'');
-    const i = createElement('i','fa-solid fa-magnifying-glass',searchDiv,'');
+    const i = createElement('i','fa-solid fa-magnifying-glass search-i',searchDiv,'');
 
     input.addEventListener('keyup', () =>{
         console.log(input.value);
