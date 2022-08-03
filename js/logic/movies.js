@@ -1,5 +1,6 @@
 const getDetails = (obj) => {
   let details = {
+    id: obj.id,
     name: obj.name,
     genres: obj.genres,
     image: obj.image.original,
@@ -9,6 +10,6 @@ const getDetails = (obj) => {
   return details;
 };
 
-if (typeof module !== undefined) {
+if (typeof module !== 'undefined') {
   module.exports = { getDetails };
 }
