@@ -64,7 +64,7 @@ body{
 }
 
 
-#one-meal .search i{
+.search-i{
   color: var(--dark-orange);
   position: absolute;
   z-index: 2;
@@ -79,11 +79,11 @@ body{
   z-index: 1;
 }
 
-#one-meal .details h2{
+.one-meal-h2{ 
  font-size: 2rem;
 }
 
-#one-meal .details span{
+.one-meal-span {
   font-size: 0.8rem;
   font-weight: 300;
  }
@@ -154,7 +154,7 @@ body{
     height: 100vh;
   }
 
-  #one-meal .search input {
+  .one-meal-input {
     padding: 1rem 2rem;
     border-radius: 30px;
   }
@@ -167,11 +167,11 @@ body{
     margin: 10rem 2rem 2rem 4rem;
   }
 
-  #one-meal .details h2 {
+  .one-meal-h2 {
     font-size: 5rem;
   }
 
-  #one-meal .details span {
+  .one-meal-span {
     font-size: 2rem;
   }
 
