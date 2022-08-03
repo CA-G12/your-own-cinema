@@ -11,3 +11,179 @@
   --bright-orange: #ff4c00;
   --dark-orange: #e34704;
 }
+
+body{
+  background-color: white;
+}
+
+#one-meal{
+  height: 20rem;
+  background-image: url('../images/meal.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  padding-top: 1rem;
+  color: white;
+}
+
+
+#one-meal::after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+#one-meal .search{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+}
+
+#one-meal .search input{
+  border: solid var(--dark-orange);
+  background-color:white;
+  opacity: 50%;
+  padding: 0.5rem 2rem;
+  border-radius: 20px;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+
+#one-meal .search input::placeholder{
+  padding-left: 1.5rem;
+  color: var(--dark-orange);
+}
+
+
+#one-meal .search i{
+  color: var(--dark-orange);
+  position: absolute;
+  z-index: 2;
+  left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#one-meal .details{
+  margin: 3rem 2rem 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+#one-meal .details h2{
+ font-size: 2rem;
+}
+
+#one-meal .details span{
+  font-size: 0.8rem;
+  font-weight: 300;
+ }
+
+
+ #one-meal .details button{
+  margin-top: 1rem;
+  background-color: var(--dark-orange);
+  padding: 0.5rem 1rem;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+ }
+
+
+ /*for meals setion */
+
+#meals-section{
+  margin-top: 2rem;
+  padding: 0 1rem;
+ }
+
+
+
+ #meals-section .meal{
+  border: solid var(--dark-orange) 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 30px;
+ }
+
+
+ #meals-section .meal .details{
+  display: flex;
+ }
+
+ #meals-section .meal .img{
+  width: 5rem;
+  height: 3rem;
+  background-image: url('../images/meal.jpg');
+  background-size: cover;
+  background-position: center;
+  margin-right: 1rem;
+ }
+
+
+#meals-section .meal button{
+  background-color: var(--dark-orange);
+  padding: 0.5rem 1rem;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+
+
+@media (min-width: 1440px) {
+  main {
+    display: flex;
+  }
+  #one-meal {
+    width: 50%;
+    height: 100vh;
+  }
+
+  #one-meal .search input {
+    padding: 1rem 2rem;
+    border-radius: 30px;
+  }
+
+  #one-meal .search input::placeholder {
+    font-size: 1rem;
+  }
+
+  #one-meal .details {
+    margin: 10rem 2rem 2rem 4rem;
+  }
+
+  #one-meal .details h2 {
+    font-size: 5rem;
+  }
+
+  #one-meal .details span {
+    font-size: 2rem;
+  }
+
+  #one-meal .details button {
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  #meals-section {
+    width: 50%;
+    height: 100vh;
+    overflow: scroll;
+  }
+}
