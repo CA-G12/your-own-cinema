@@ -1,17 +1,4 @@
 
-//createOneMeal();
-
-    
-/*
-    console.log("Meal Name: ",data.meals[0].strMeal);
-    console.log("strCategory: ",data.meals[0].strCategory);
-    console.log("strMealThumb: ",data.meals[0].strMealThumb);
-    console.log("seemore: ",data.meals[0].strYoutube);
-
-    */
-
-
-
 let urlMainMeal ="https://www.themealdb.com/api/json/v1/1/random.php";
 fetch(urlMainMeal,displayMainMeal);
 
@@ -62,6 +49,11 @@ function mainMeal(mealName,mealCategory,mealImg,mealYoutube){
     const oneMealh2 = createElement('h2','.one-meal-h2',oneMealDetails,mealName);
     const oneMealspan = createElement('span','.one-meal-span',oneMealh2,mealCategory);
     const oneMealbtn = createElement('button','',oneMealDetails,'See more')
+
+    oneMealbtn.addEventListener('click',()=>{
+        window.open(mealYoutube);
+    })
+
 }
 
 
@@ -69,6 +61,7 @@ function mainMeal(mealName,mealCategory,mealImg,mealYoutube){
 function createSearch(divParent){
     const searchDiv = createElement('div','search',divParent,'');
     const input = createElement('input','.one-meal-input',searchDiv,'');
+    input.placeholder = "Search...";
     const i = createElement('i','fa-solid fa-magnifying-glass search-i',searchDiv,'');
 
     input.addEventListener('keyup', () =>{
@@ -123,11 +116,14 @@ function mealsFromCategory(data){
 function mealDetails(mealId){
     const mealurl = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`;
     fetch(mealurl,displayMainMeal);
+
 }
 
 
 function displayMealDetails(data){
+    console.log(data.meals[0]);
     displayMainMeal(data);
+    displayDetails(data);
 
 }
 
@@ -139,4 +135,10 @@ function fetchMealBySearch(data){
         createOneMeal(element.strMeal, element.strMealThumb,element.idMeal);
 
 });
+}
+
+
+function displayDetails(){
+
+
 }
