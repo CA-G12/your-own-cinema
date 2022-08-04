@@ -5,6 +5,7 @@ const getDetails = (obj) => {
     genres: obj.genres,
     image: obj.image.original,
     url: obj.url,
+    summary: obj.summary,
   };
 
   return details;
