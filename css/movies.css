@@ -16,6 +16,8 @@ body {
   background-color: black;
 }
 
+/* ========= start of random show section ========== */
+
 #one-movie {
   height: 20rem;
   background-image: url('../images/joker.jpg');
@@ -29,7 +31,7 @@ body {
 #one-movie::after {
   content: '';
   position: absolute;
-  background-color: rgb(0, 0, 0, 0.5);
+  background-color: rgb(0, 0, 0, 0.75);
   height: 100%;
   width: 100%;
   top: 0;
@@ -88,8 +90,23 @@ body {
 }
 
 #one-movie .details span {
+  display: inline-block;
   font-size: 0.8rem;
+  font-weight: 200;
+  margin-bottom: 2rem;
+  margin-right: 1rem;
+}
+
+#one-movie .details .rating {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+#one-movie .details div {
+  font-size: 0.7rem;
   font-weight: 300;
+  height: 2.7rem;
+  overflow: hidden;
 }
 
 #one-movie .details button {
@@ -101,6 +118,7 @@ body {
   border-radius: 20px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  font-weight: 600;
 }
 
 #one-movie .details button:hover {
@@ -110,6 +128,10 @@ body {
   box-shadow: 0 0 10px 0 var(--bright-green), 0 0 20px 0 var(--bright-green),
     0 0 30px 0 var(--bright-green);
 }
+
+/* ========= end of random show section ========== */
+
+/* ========= start of show suggestions ========== */
 
 #movies-section {
   background-color: black;
@@ -134,12 +156,22 @@ body {
 }
 
 #movies-section .movie .img {
-  width: 5rem;
+  width: 3rem;
   height: 3rem;
   background-image: url('../images/joker.jpg');
   background-size: cover;
   background-position: center;
   margin-right: 1rem;
+  border-radius: 50%;
+}
+
+#movies-section .movie .name h3 {
+  font-size: 1rem;
+}
+
+#movies-section .movie .name p {
+  font-size: 0.6rem;
+  font-weight: 300;
 }
 
 #movies-section .movie button {
@@ -151,12 +183,23 @@ body {
   cursor: pointer;
 }
 
+#movies-section .movie button:hover {
+  background-color: inherit;
+  color: var(--bright-green);
+  outline: 2px solid var(--bright-green);
+  box-shadow: 0 0 10px 0 var(--bright-green), 0 0 20px 0 var(--bright-green),
+    0 0 30px 0 var(--bright-green);
+}
+
+/* ========= end of show suggestions ========== */
+
+/* ========= start of seasons section ========== */
 #seasons-section {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   row-gap: 0.5rem;
-  padding: 2rem 1rem;
+  padding: 0.5rem 1rem;
   display: none;
 }
 
@@ -180,7 +223,7 @@ body {
 #seasons-section .season::after {
   content: '';
   position: absolute;
-  background-color: rgb(0, 0, 0, 0.5);
+  background-color: rgb(0, 0, 0, 0.6);
   height: 100%;
   width: 100%;
   top: 0;
@@ -210,6 +253,9 @@ button {
   box-shadow: 0 0 10px 0 var(--bright-green), 0 0 20px 0 var(--bright-green),
     0 0 30px 0 var(--bright-green);
 }
+/* ========= end of seasons section ========== */
+
+/* ============== Media Queries ============== */
 
 @media (min-width: 1024px) {
   main {
@@ -234,28 +280,57 @@ button {
   }
 
   #one-movie .details h2 {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
   #one-movie .details span {
-    font-size: 2rem;
+    font-size: 1.3rem;
+  }
+
+  #one-movie .details .rating {
+    font-size: 1.7rem;
+  }
+
+  #one-movie .details div {
+    font-size: 1rem;
+    padding: 0.5rem 6rem 0.5rem 0rem;
+    height: 5.5rem;
   }
 
   #one-movie .details button {
     margin-top: 1.5rem;
-    padding: 0.8rem 1.5rem;
+    padding: 0.8rem 3rem;
     font-size: 1rem;
   }
 
   #movies-section {
+    margin-top: auto;
     width: 50%;
-    height: 95vh;
+    height: 99vh;
     overflow-y: scroll;
+  }
+
+  #movies-section .movie {
+    border-radius: 50px;
+  }
+
+  #movies-section .movie .img {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+  }
+
+  #movies-section .movie .name h3 {
+    font-size: 1.1rem;
+  }
+
+  #movies-section .movie .name p {
+    font-size: 0.8rem;
   }
 
   #seasons-section {
     width: 50%;
-    height: 95vh;
+    height: 99vh;
     overflow-y: scroll;
   }
 
@@ -288,22 +363,39 @@ button {
   }
 
   #one-movie .details h2 {
-    font-size: 5rem;
+    font-size: 4rem;
   }
 
   #one-movie .details span {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
-  #one-movie .details button {
-    margin-top: 1.5rem;
-    padding: 0.8rem 1.5rem;
+  #one-movie .details .rating {
+    font-size: 2rem;
+  }
+  #one-movie .details div {
+    font-size: 1.1rem;
+  }
+
+  #movies-section .movie .img {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  #movies-section .movie .name h3 {
+    font-size: 1.4rem;
+  }
+
+  #movies-section .movie .name p {
     font-size: 1rem;
   }
 
-  #movies-section {
-    width: 50%;
-    height: 90vh;
-    overflow-y: scroll;
+  #movies-section .movie button {
+    padding: 1em 2rem;
+  }
+
+  #seasons-section .season button {
+    font-size: 1rem;
+    padding: 0.7rem 1.5rem;
   }
 }
