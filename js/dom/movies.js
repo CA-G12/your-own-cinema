@@ -1,142 +1,159 @@
-// ================ get all seasons for one show =================
-const moviesContainer = document.querySelector('#movies-section');
-const seasonsContainer = document.querySelector('#seasons-section');
-
-const getSeasons = (id) => {
+// ============ looping over and displaying the array of episodes in the page =========
+const getEpisodes = (arr) => {
   moviesContainer.style.display = 'none';
   seasonsContainer.style.display = 'flex';
   seasonsContainer.textContent = '';
 
-  fetch(`https://api.tvmaze.com/shows/${id}/seasons`, (data) => {
-    data.forEach((e) => {
-      const season = document.createElement('div');
-      season.classList = 'season';
+  arr.forEach((e) => {
+    const season = document.createElement('div');
+    const title = document.querySelector('h3');
+    const btn2 = document.createElement('button');
 
-      if (e.image) season.style.backgroundImage = `url(${e.image.original})`;
-      else season.style.backgroundImage = `url(../images/broken2.jpg)`;
+    season.classList = 'season';
+    season.id = e.id;
+    if (e.image) season.style.backgroundImage = `url(${e.image.original})`;
+    else season.style.backgroundImage = `url(../images/broken2.jpg)`;
+    title.textContent = `episode ${e.number}`;
+    btn2.textContent = 'watch';
 
-      const title = document.querySelector('h3');
-      title.textContent = `season ${e.number}`;
+    season.appendChild(title);
+    season.appendChild(btn2);
+    seasonsContainer.appendChild(season);
 
-      const btn = document.querySelector('button');
-      btn.textContent = 'episodes';
-
-      season.appendChild(title);
-      season.appendChild(btn);
-
-      seasonsContainer.appendChild(season);
+    btn2.addEventListener('click', () => {
+      window.open(e.url);
     });
   });
+};
+
+// ========= fetching an array of episodes based on the season id and handle it in the getEpisodes
+
+const fetchEpisodes = (e) => {
+  let id = e.target.parentElement.id;
+  fetch(`https://api.tvmaze.com/seasons/${id}/episodes`, getEpisodes);
+};
+
+// ================ loop over and display the array of seasons for one show =================
+const moviesContainer = document.querySelector('#movies-section');
+const seasonsContainer = document.querySelector('#seasons-section');
+
+const getSeasons = (arr) => {
+  moviesContainer.style.display = 'none';
+  seasonsContainer.style.display = 'flex';
+  seasonsContainer.textContent = '';
+
+  arr.forEach((e) => {
+    const season = document.createElement('div');
+    const title = document.querySelector('h3');
+    const btn2 = document.createElement('button');
+
+    season.classList = 'season';
+    season.id = e.id;
+    if (e.image) season.style.backgroundImage = `url(${e.image.original})`;
+    else season.style.backgroundImage = `url(../images/broken2.jpg)`;
+    title.textContent = `season ${e.number}`;
+    btn2.textContent = 'episodes';
+
+    season.appendChild(title);
+    season.appendChild(btn2);
+    seasonsContainer.appendChild(season);
+
+    btn2.addEventListener('click', fetchEpisodes);
+  });
+};
+
+// ============= fetching the array of seasons for the show =============
+
+const fetchSeasons = (e) => {
+  let id = e.target.parentElement.parentElement.classList[0];
+  fetch(`https://api.tvmaze.com/shows/${id}/seasons`, getSeasons);
 };
 
 // ================ get a random movie in each refresh ======================
 // html elements for changing the values
 const randomMov = document.querySelector('#one-movie');
 const heading = document.querySelector('#one-movie .details h2');
-const imgContainer = document.querySelector('#one-movie');
+const genres = document.querySelector('#one-movie .details span');
+const rating = document.querySelector('#one-movie .details .rating');
+const summary = document.querySelector('#one-movie .details div');
 
 const randomMovie = (obj) => {
-  const details = getDetails(obj);
-  randomMov.classList = obj.id;
-  heading.innerHTML = `${obj.name} <span>${details.genres.join(', ')}</span>`;
-  imgContainer.style.backgroundImage = `url(${details.image})`;
-
-  const btn = document.querySelector('.show-more');
-
-  const id = randomMov.classList[0];
-  console.log(btn, id);
-
-  btn.addEventListener('click', (e) => {
-    getSeasons(obj.id);
-  });
+  if (obj) {
+    const details = getDetails(obj);
+    randomMov.classList = details.id;
+    randomMov.style.backgroundImage = `url(${details.image})`;
+    heading.textContent = details.name;
+    genres.textContent = details.genres.join(', ');
+    rating.textContent = `${obj.rating.average}`;
+    summary.innerHTML = details.summary;
+  } else displayShows();
 };
 
-// ==================== render data and display them in the page ==================
-const renderData = (arr) => {
+// ========= adding an event listener on the watch more button which shows all reasons
+const btn = document.querySelector('.show-more');
+btn.addEventListener('click', fetchSeasons);
+
+// ========= loop over the fetched array of movies and display them in the page  =========
+const renderTvShows = (arr) => {
   moviesContainer.style.display = 'block';
   seasonsContainer.style.display = 'none';
-
   moviesContainer.textContent = '';
+
   arr.forEach((e) => {
     const movie = document.createElement('div');
-    movie.classList = 'movie';
-
     const details = document.createElement('div');
-    details.classList = 'details';
-    movie.appendChild(details);
-
     const imgDiv = document.createElement('div');
-    imgDiv.classList = 'img';
-    imgDiv.style.backgroundImage = `url(${e.image.original})`;
-    details.appendChild(imgDiv);
-
     const name = document.createElement('div');
+    const title = document.createElement('h3');
+    const genre = document.createElement('p');
+    const btn = document.createElement('button');
+
+    movie.classList = 'movie';
+    details.classList = 'details';
+    imgDiv.classList = 'img';
     name.classList = 'name';
 
-    const title = document.createElement('h3');
+    imgDiv.style.backgroundImage = `url(${e.image.original})`;
     title.textContent = e.name;
-    name.appendChild(title);
-
-    const genre = document.createElement('p');
     genre.textContent = e.genres.join(', ');
-    name.appendChild(genre);
-
-    details.appendChild(name);
-
-    const btn = document.createElement('button');
     btn.textContent = 'See More';
-    btn.addEventListener('click', () => {
-      randomMovie(e);
-    });
 
+    movie.appendChild(details);
+    details.appendChild(imgDiv);
+    name.appendChild(title);
+    name.appendChild(genre);
+    details.appendChild(name);
     movie.appendChild(btn);
 
     moviesContainer.appendChild(movie);
+
+    btn.addEventListener('click', () => {
+      randomMovie(e);
+    });
   });
 };
 
-// ===============  create the search functionality ===============
+// ===============  search for one show and display it with randomMovie function ===============
 
 let input = document.querySelector('.search input');
 input.addEventListener('keyup', (e) => {
-  fetch(
-    `https://api.tvmaze.com/singlesearch/shows?q=${e.target.value}`,
-    (data) => {
-      if (data) renderData([data]);
-    }
-  );
+  const value = e.target.value;
+  if (value) {
+    fetch(
+      `https://api.tvmaze.com/singlesearch/shows?q=${e.target.value}`,
+      randomMovie
+    );
+  } else displayShows();
 });
 
-// =============  fetching all data ==========
+// =============  fetches all tv shows and handles them with renderTvShows =============
 
-fetch('https://api.tvmaze.com/shows', (data) => {
-  renderData(data.slice(0, 50));
-  const random = data[Math.floor(Math.random() * data.length)];
-  randomMovie(random);
-});
+const displayShows = () => {
+  fetch('https://api.tvmaze.com/shows', (data) => {
+    renderTvShows(data.slice(0, 50));
+    const random = data[Math.floor(Math.random() * data.length)];
+    randomMovie(random);
+  });
+};
 
-// const getSeasons = (arr) => {
-//   moviesContainer.style.display = 'none';
-//   seasonsContainer.style.display = 'flex';
-
-//   //   console.log(arr);
-//   seasonsContainer.textContent = '';
-//   arr.forEach((e) => {
-//     const season = document.createElement('div');
-//     season.classList = 'season';
-
-//     if (e.image) season.style.backgroundImage = `url(${e.image.original})`;
-//     else season.style.backgroundImage = `url(../images/broken2.jpg)`;
-
-//     const title = document.querySelector('h3');
-//     title.textContent = `season ${e.number}`;
-
-//     const btn = document.querySelector('button');
-//     btn.textContent = 'episodes';
-
-//     season.appendChild(title);
-//     season.appendChild(btn);
-
-//     seasonsContainer.appendChild(season);
-//   });
-// };
+displayShows();

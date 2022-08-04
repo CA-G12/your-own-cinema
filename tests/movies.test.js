@@ -66,7 +66,8 @@ test('testing the getElement function', () => {
     genres: obj.genres,
     image: obj.image.original,
     url: obj.url,
+    summary: obj.summary,
   });
 
-  expect(Object.keys(details).length).toBe(5);
+  expect(Object.keys(details).length).toBe(6);
 });
