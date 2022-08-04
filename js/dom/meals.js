@@ -55,12 +55,12 @@ function mainMeal(mealName,mealCategory,mealImg,mealYoutube){
 
     const oneMealSection = document.querySelector("#one-meal"); 
     oneMealSection.textContent = '';
-
+    createSearch(oneMealSection);
 
     oneMealSection.style.backgroundImage = `url(${mealImg})`;
     const oneMealDetails = createElement('div','details',oneMealSection,'');
-    const oneMealh2 = createElement('h2','',oneMealDetails,mealName);
-    const oneMealspan = createElement('span',' .one-meal-span ',oneMealh2,mealCategory);
+    const oneMealh2 = createElement('h2','.one-meal-h2',oneMealDetails,mealName);
+    const oneMealspan = createElement('span','.one-meal-span',oneMealh2,mealCategory);
     const oneMealbtn = createElement('button','',oneMealDetails,'See more')
 }
 
@@ -68,12 +68,13 @@ function mainMeal(mealName,mealCategory,mealImg,mealYoutube){
 
 function createSearch(divParent){
     const searchDiv = createElement('div','search',divParent,'');
-    const input = createElement('input','',searchDiv,'');
-    const i = createElement('i','fa-solid fa-magnifying-glass',searchDiv,'');
+    const input = createElement('input','.one-meal-input',searchDiv,'');
+    const i = createElement('i','fa-solid fa-magnifying-glass search-i',searchDiv,'');
 
     input.addEventListener('keyup', () =>{
         console.log(input.value);
         let  url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${input.value}`;
+
         fetch(url,fetchMealBySearch);
 
     })
@@ -85,6 +86,7 @@ function createSearch(divParent){
 function   createOneMeal( mealCategory, mealImg,id=null){
 
     const oneMeal = document.querySelector("#meals-section");
+    
     const meal = createElement('div','meal',oneMeal,'');
     const mealdetails = createElement('div','details',meal,'');
     const mealimg = createElement('div','img',mealdetails,'');
@@ -127,4 +129,14 @@ function mealDetails(mealId){
 function displayMealDetails(data){
     displayMainMeal(data);
 
+}
+
+function fetchMealBySearch(data){ 
+    document.querySelector("#meals-section").textContent = "";
+    let meals = data.meals;
+    console.log(meals);
+    meals.forEach(element => {
+        createOneMeal(element.strMeal, element.strMealThumb,element.idMeal);
+
+});
 }
